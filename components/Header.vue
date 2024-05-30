@@ -6,16 +6,55 @@
       class="flex gap-5 self-end text-2xl mr-[-220px] font-extrabold font-raleway leading-9 text-pink-600 max-md:mr-2.5"
     >
       <NuxtLink to="/">
-        <p class="flex-auto font-sans">STARTSEITE</p>
+        <p class="flex-auto font-sans mr-[-105px]">STARTSEITE</p>
       </NuxtLink>
-      <div class="flex gap-0">
-        <NuxtLink class="font-sans" to="/about">ÜBER UNS</NuxtLink>
-        <img
-          loading="lazy"
-          src="https://i.ibb.co/tp7LZjM/downarrow-121316p.png"
-          alt=""
-          class="aspect-[1.45] max-w-[10%] max-h-[50%] mt-[5px] ml-[5px]"
-        />
+      <div class="flex gap-0 group">
+        <Menu as="div" v-slot="{ open, close }" class="">
+          <MenuButton>
+            <NuxtLink
+              class="font-sans mr-[400px]"
+              to="/about"
+              @mouseover="(e) => hoverPopover(e, open)"
+              @mouseleave="closePopover(close)"
+              >ÜBER UNS</NuxtLink
+            >
+            <img
+              loading="lazy"
+              src="https://i.ibb.co/tp7LZjM/downarrow-121316p.png"
+              alt=""
+              class="aspect-[1.45] max-w-[5%] max-h-[50%] mt-[-30px] ml-[240px] transform group-hover:rotate-180 transition duration-200"
+              @mouseover="(e) => hoverPopover(e, open)"
+              @mouseleave="closePopover(close)"
+            />
+          </MenuButton>
+
+          <transition
+            enter-active-class="transition duration-100 ease-out"
+            enter-from-class="transform scale-95 opacity-0"
+            enter-to-class="transform scale-100 opacity-100"
+            leave-active-class="transition duration-75 ease-in"
+            leave-from-class="transform scale-100 opacity-100"
+            leave-to-class="transform scale-95 opacity-0"
+          >
+            <MenuItems class="absolute mt-2 w-[162px] ml-[110px]">
+              <div class="">
+                <MenuItem v-slot="{ active }">
+                  <NuxtLink
+                    to="/kontakt"
+                    :class="[
+                      'bg-[#ECECED] mt-[-15px] font-sans font-extrabold text-[24px] text-[#DB2777]',
+                      'group flex w-full items-center rounded-md px-2 py-2',
+                    ]"
+                    @mouseover.prevent="popoverHover = true"
+                    @mouseleave.prevent="closePopover(close)"
+                  >
+                    KONTAKT
+                  </NuxtLink>
+                </MenuItem>
+              </div>
+            </MenuItems>
+          </transition>
+        </Menu>
       </div>
     </nav>
     <NuxtLink to="/">
@@ -32,3 +71,34 @@
     </h1>
   </header>
 </template>
+
+<script setup lang="ts">
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+
+interface Props {
+  label: string;
+  hasHref?: boolean;
+  href?: string;
+}
+const props = defineProps<Props>();
+
+const popoverHover = ref(false);
+const popoverTimeout = ref();
+
+const hoverPopover = (e: any, open: boolean): void => {
+  popoverHover.value = true;
+  if (!open) {
+    e.target.parentNode.click();
+  }
+};
+
+const closePopover = (close: any): void => {
+  popoverHover.value = false;
+  if (popoverTimeout.value) clearTimeout(popoverTimeout.value);
+  popoverTimeout.value = setTimeout(() => {
+    if (!popoverHover.value) {
+      close();
+    }
+  }, 100);
+};
+</script>

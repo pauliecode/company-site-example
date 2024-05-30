@@ -10,9 +10,11 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.7.22",
     "@nuxt/image": "^1.7.0",
     "@splidejs/vue-splide": "^0.6.12",
     "nuxt": "^3.11.2",
+    "swiper": "^11.1.4",
     "vue": "^3.4.27",
     "vue-carousel-3d": "^1.0.1",
     "vue-router": "^4.3.2"

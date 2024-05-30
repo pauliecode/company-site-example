@@ -28,7 +28,7 @@
       >
         WILLKOMMEN AUF DIESER SEITE.
       </h2>
-      <div>
+      <div class="relative">
         <img
           loading="lazy"
           :src="state"
