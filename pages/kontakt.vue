@@ -1,0 +1,213 @@
+<template>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet"
+  />
+  <div class="flex flex-col px-20 pt-7 pb-20 bg-white max-md:px-5">
+    <nav
+      class="flex gap-5 self-end text-2xl font-extrabold font-raleway leading-9 text-pink-600 max-md:mr-2.5"
+    >
+      <a href="/" class="flex-auto font-sans">STARTSEITE</a>
+      <div class="flex gap-0">
+        <NuxtLink class="grow font-sans" to="/about">ÜBER UNS</NuxtLink>
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/c81d08b38e327584e81708597261ebe44177d6e18e0f901590ad064ef17bed00?apiKey=de96e3c014f24fc59b81afe797583090&"
+          alt=""
+          class="shrink-0 aspect-[1.45] w-[84px]"
+        />
+      </div>
+    </nav>
+    <section
+      class="flex flex-col items-center self-center mt-4 w-full max-w-[1705px] max-md:max-w-full"
+    >
+      <header
+        class="flex gap-5 items-start w-full leading-[150%] max-w-[1657px] max-md:flex-wrap max-md:max-w-full"
+      >
+        <h1
+          class="flex-auto mt-[10px] text-[25px] font-extrabold font-raleway text-pink-600"
+        >
+          LOREM IPSUM
+        </h1>
+      </header>
+      <h2
+        class="self-center mt-[-20px] text-[38px] font-extralight font-raleway text-black"
+      >
+        Kontakt
+      </h2>
+      <!-- 
+            <img
+              loading="lazy"
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/f18393f95c41eea547e1a4aac65fdc5c23282414b98e86ac1692917eac341c92?apiKey=de96e3c014f24fc59b81afe797583090&"
+              alt=""
+              class="shrink-0 self-start aspect-[1.45] w-[84px]"
+            />
+            -->
+
+      <h2
+        class="text-[54px] mt-[1px] font-extrabold font-raleway text-pink-600 leading-[81px] max-md:max-w-full max-md:text-4xl"
+      >
+        WIR SIND FÜR SIE DA.
+      </h2>
+    </section>
+  </div>
+
+  <section class="flex flex-col ml-[400px]">
+    <header
+      class="w-full text-4xl mb-[-30px] font-extralight text-black leading-[57px] max-md:max-w-full"
+    >
+      Kontaktformular
+    </header>
+
+    <form @submit.prevent="submitForm" class="flex flex-col mt-10">
+      <div class="flex gap-4 max-md:flex-wrap">
+        <input
+          type="text"
+          name="vorname"
+          v-model="form.vorname"
+          class="shrink-0 max-w-full bg-gray-200 h-[55px] w-[536px] pl-[12px]"
+          aria-label="Vorname"
+        />
+        <input
+          type="text"
+          id="nachname"
+          name="nachname"
+          v-model="form.nachname"
+          class="shrink-0 max-w-full bg-gray-200 h-[55px] w-[536px] pl-[12px]"
+          aria-label="Nachname"
+        />
+      </div>
+      <div
+        class="flex gap-5 mt-2 max-w-full text-2xl font-light leading-9 text-black whitespace-nowrap w-[678px] max-md:flex-wrap"
+      >
+        <label class="flex-auto mt-[-10px]" for="vorname" aria-hidden="true"
+          >Vorname*</label
+        >
+        <label
+          class="flex-auto ml-[425px] mt-[-10px]"
+          for="nachname"
+          aria-hidden="true"
+          >Nachname*</label
+        >
+      </div>
+      <div class="flex gap-4 mt-5 max-md:flex-wrap">
+        <input
+          type="email"
+          name="email"
+          v-model="form.email"
+          class="shrink-0 max-w-full bg-gray-200 h-[55px] w-[536px] pl-[12px]"
+          aria-label="E-Mail"
+          required
+        />
+        <input
+          type="tel"
+          name="telefon"
+          v-model="form.telefon"
+          class="shrink-0 max-w-full bg-gray-200 h-[55px] w-[536px] pl-[12px]"
+          aria-label="Telefon"
+        />
+      </div>
+      <div
+        class="flex gap-5 justify-between mt-2 max-w-full text-2xl font-light leading-9 text-black whitespace-nowrap w-[630px] max-md:flex-wrap"
+      >
+        <label class="mt-[-10px]" for="email" aria-hidden="true">E-Mail*</label>
+        <label class="mt-[-10px]" for="telefon" aria-hidden="true"
+          >Telefon</label
+        >
+      </div>
+
+      <section
+        class="w-full mt-[30px] text-2xl font-light leading-9 text-black max-md:mt-20 max-md:max-w-full"
+      >
+        * Pflichtfelder
+      </section>
+      <div class="flex mt-[25px] max-md:flex-wrap max-md:mt-10">
+        <input
+          type="checkbox"
+          id="consent"
+          class="shrink-0 self-start border border-black border-solid bg-zinc-300 bg-opacity-0 h-[18px] w-[18px]"
+        />
+        <label
+          for="consent"
+          class="flex-auto max-w-[1088px] ml-[5px] mt-[-4px] mb-[20px] text-base font-light leading-6 text-black"
+        >
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+          ipsum dolor sit.
+        </label>
+      </div>
+      <button
+        type="submit"
+        class="justify-center items-center px-16 mt-12 max-w-full text-2xl font-extrabold leading-9 text-pink-600 whitespace-nowrap bg-gray-200 w-[260px] h-[49px] max-md:px-5 max-md:mt-10"
+      >
+        ABSENDEN
+      </button>
+    </form>
+  </section>
+</template>
+
+<script setup>
+import { ref } from "vue";
+import { $fetch } from "ofetch";
+
+const form = ref({
+  access_key: "ed5ead25-4182-42dd-9f13-c4264bf64bde",
+  subject: "New Submission from Web3Forms",
+  vorname: "",
+  nachname: "",
+  email: "",
+  telefon: "",
+});
+
+const result = ref("");
+const status = ref("");
+
+const submitForm = async () => {
+  result.value = "Please wait...";
+  try {
+    const response = await $fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: form.value,
+    });
+
+    console.log(response); // You can remove this line if you don't need it
+
+    result.value = response.message;
+
+    if (response.status === 200) {
+      status.value = "success";
+    } else {
+      console.log(response); // Log for debugging, can be removed
+      status.value = "error";
+    }
+  } catch (error) {
+    console.log(error); // Log for debugging, can be removed
+    status.value = "error";
+    result.value = "Something went wrong!";
+  } finally {
+    // Reset form after submission
+    form.value.vorname = "";
+    form.value.nachname = "";
+    form.value.email = "";
+    form.value.telefon = "";
+
+    // Clear result and status after 5 seconds
+    setTimeout(() => {
+      result.value = "";
+      status.value = "";
+    }, 5000);
+  }
+};
+</script>
