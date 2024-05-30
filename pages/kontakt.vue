@@ -12,33 +12,11 @@
     href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
     rel="stylesheet"
   />
-  <div class="flex flex-col px-20 pt-7 pb-20 bg-white max-md:px-5">
-    <nav
-      class="flex gap-5 self-end text-2xl font-extrabold font-raleway leading-9 text-pink-600 max-md:mr-2.5"
-    >
-      <a href="/" class="flex-auto font-sans">STARTSEITE</a>
-      <div class="flex gap-0">
-        <NuxtLink class="grow font-sans" to="/about">ÜBER UNS</NuxtLink>
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/c81d08b38e327584e81708597261ebe44177d6e18e0f901590ad064ef17bed00?apiKey=de96e3c014f24fc59b81afe797583090&"
-          alt=""
-          class="shrink-0 aspect-[1.45] w-[84px]"
-        />
-      </div>
-    </nav>
+  <div class="flex flex-col px-20pt-7 pb-20 mt-[100px] bg-white max-md:px-5">
     <section
-      class="flex flex-col items-center self-center mt-4 w-full max-w-[1705px] max-md:max-w-full"
+      class="flex flex-col items-center self-center w-full max-w-[1705px] max-md:max-w-full"
     >
-      <header
-        class="flex gap-5 items-start w-full leading-[150%] max-w-[1657px] max-md:flex-wrap max-md:max-w-full"
-      >
-        <h1
-          class="flex-auto mt-[10px] text-[25px] font-extrabold font-raleway text-pink-600"
-        >
-          LOREM IPSUM
-        </h1>
-      </header>
+      <Header />
       <h2
         class="self-center mt-[-20px] text-[38px] font-extralight font-raleway text-black"
       >
@@ -160,10 +138,11 @@
 <script setup>
 import { ref } from "vue";
 import { $fetch } from "ofetch";
+import Header from "../components/Header.vue";
 
 const form = ref({
   access_key: "ed5ead25-4182-42dd-9f13-c4264bf64bde",
-  subject: "New Submission from Web3Forms",
+  subject: "Nachricht erhalten",
   vorname: "",
   nachname: "",
   email: "",
@@ -174,7 +153,7 @@ const result = ref("");
 const status = ref("");
 
 const submitForm = async () => {
-  result.value = "Please wait...";
+  result.value = "Bitte warten Sie...";
   try {
     const response = await $fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -195,13 +174,14 @@ const submitForm = async () => {
   } catch (error) {
     console.log(error); // Log for debugging, can be removed
     status.value = "error";
-    result.value = "Something went wrong!";
+    result.value = "Etwas ist schiefgelaufen!";
   } finally {
     // Reset form after submission
     form.value.vorname = "";
     form.value.nachname = "";
     form.value.email = "";
     form.value.telefon = "";
+    await navigateTo({ path: "/kontakterfolg" });
 
     // Clear result and status after 5 seconds
     setTimeout(() => {
