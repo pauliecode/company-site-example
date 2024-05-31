@@ -22,14 +22,6 @@
       >
         Kontakt
       </h2>
-      <!-- 
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/f18393f95c41eea547e1a4aac65fdc5c23282414b98e86ac1692917eac341c92?apiKey=de96e3c014f24fc59b81afe797583090&"
-              alt=""
-              class="shrink-0 self-start aspect-[1.45] w-[84px]"
-            />
-            -->
 
       <h2
         class="text-[54px] mt-[1px] font-extrabold font-raleway text-pink-600 leading-[81px] max-md:max-w-full max-md:text-4xl"
@@ -46,7 +38,7 @@
       Kontaktformular
     </header>
 
-    <form @submit.prevent="submitForm" class="flex flex-col mt-10">
+    <form @submit.prevent="submitForm" class="flex flex-col mt-10" novalidate>
       <div class="flex gap-4 max-md:flex-wrap">
         <input
           type="text"
@@ -103,6 +95,17 @@
         >
       </div>
 
+      <!-- Fehlermeldungen werden nur gezeigt, wenn es eigentlich fehlerMeldungen gibt im errorMessages Array. -->
+      <div
+        v-if="errorMessages.length > 0"
+        class="text-[#FF2727] font-sans font-extralight mt-8"
+      >
+        <p>Fehler: <br /></p>
+        <ul>
+          <li v-for="error in errorMessages" :key="error">- {{ error }}</li>
+        </ul>
+      </div>
+
       <section
         class="w-full mt-[30px] text-2xl font-light leading-9 text-black max-md:mt-20 max-md:max-w-full"
       >
@@ -112,19 +115,19 @@
         <input
           type="checkbox"
           id="consent"
+          ref="consentCheckbox"
           class="shrink-0 self-start border border-black border-solid bg-zinc-300 bg-opacity-0 h-[18px] w-[18px]"
         />
         <label
           for="consent"
           class="flex-auto max-w-[1088px] ml-[5px] mt-[-4px] mb-[20px] text-base font-light leading-6 text-black"
         >
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-          ipsum dolor sit.
+          Hiermit erkläre ich, dass: meine Daten zur weiteren Verarbeitung
+          speichern darf. Diese Einwilligung kann jederzeit widerrufen werden.
+          Weitere Informationen unter Datenschutz.
         </label>
       </div>
+
       <button
         type="submit"
         class="justify-center items-center px-16 mt-12 max-w-full text-2xl font-extrabold leading-9 text-pink-600 whitespace-nowrap bg-gray-200 w-[260px] h-[49px] max-md:px-5 max-md:mt-10"
@@ -149,10 +152,49 @@ const form = ref({
   telefon: "",
 });
 
+// State für das Checkbox
+const consentCheckbox = ref(null);
+
+// States für die verschiede Phasen des Submit-Verfahrens
 const result = ref("");
 const status = ref("");
+const errorMessages = ref([]);
+
+// Funktion um das Format der Email-Adresse zu überprüfen
+function validateEmail(email) {
+  const re =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
 
 const submitForm = async () => {
+  errorMessages.value = [];
+
+  if (!form.value.vorname) {
+    errorMessages.value.push("Bitte geben Sie Ihren Vornamen ein.");
+  }
+  if (!form.value.nachname) {
+    errorMessages.value.push("Bitte geben Sie Ihren Nachnamen ein.");
+  }
+  if (!validateEmail(form.value.email)) {
+    errorMessages.value.push(
+      "Bitte geben Sie eine gültige E-Mail-Adresse ein."
+    );
+  }
+
+  if (consentCheckbox.value?.checked !== true) {
+    errorMessages.value.push(
+      "Bitte stimmen Sie den Datenschutzbedingungen zu."
+    );
+  }
+
+  if (errorMessages.value.length > 0) {
+    // Fehlermeldungen in einer einzigen String zusammenfassen
+    const combinedErrorMessage = errorMessages.value.join("\n"); // Mit Zeilenumbruch verbinden für bessere Lesbarkeit
+    result.value = combinedErrorMessage;
+    return; // Formularübermittlung bei fehlgeschlagener Validierung verhindern
+  }
+
   result.value = "Bitte warten Sie...";
   try {
     const response = await $fetch("https://api.web3forms.com/submit", {
@@ -161,29 +203,27 @@ const submitForm = async () => {
       body: form.value,
     });
 
-    console.log(response); // You can remove this line if you don't need it
-
     result.value = response.message;
 
     if (response.status === 200) {
       status.value = "success";
     } else {
-      console.log(response); // Log for debugging, can be removed
+      console.log(response); // Log für die Debugging, kann gelöscht werden
       status.value = "error";
     }
   } catch (error) {
-    console.log(error); // Log for debugging, can be removed
+    console.log(error); // Log für die Debugging, kann gelöscht werden
     status.value = "error";
     result.value = "Etwas ist schiefgelaufen!";
   } finally {
-    // Reset form after submission
+    // Formular nach dem Absenden zurücksetzen
     form.value.vorname = "";
     form.value.nachname = "";
     form.value.email = "";
     form.value.telefon = "";
     await navigateTo({ path: "/kontakterfolg" });
 
-    // Clear result and status after 5 seconds
+    // Result und Status nach 5 Sekunden löschen
     setTimeout(() => {
       result.value = "";
       status.value = "";
