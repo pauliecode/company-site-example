@@ -3,16 +3,16 @@
     class="flex flex-col items-start w-full mb-10 mt-[-50px] leading-[150%] ml-[300px] max-w-[1657px] max-md:flex-wrap max-md:max-w-full"
   >
     <nav
-      class="flex gap-5 self-end text-2xl mr-[-220px] font-extrabold font-raleway leading-9 text-pink-600 max-md:mr-2.5"
+      class="flex self-end text-2xl gap-24 mr-[200px] font-extrabold font-raleway leading-9 text-pink-600 max-md:mr-2.5"
     >
-      <NuxtLink to="/">
+      <NuxtLink class="min-w-[50px]" to="/">
         <p class="flex-auto font-sans mr-[-105px]">STARTSEITE</p>
       </NuxtLink>
       <div class="flex gap-0 group">
         <Menu as="div" v-slot="{ open, close }" class="">
-          <MenuButton>
+          <MenuButton class="max-w-[150px] h-[50px] mt-[-38px]">
             <NuxtLink
-              class="font-sans mr-[400px]"
+              class="inline-block font-sans"
               to="/about"
               @mouseover="(e) => hoverPopover(e, open)"
               @mouseleave="closePopover(close)"
@@ -22,7 +22,7 @@
               loading="lazy"
               src="https://i.ibb.co/tp7LZjM/downarrow-121316p.png"
               alt=""
-              class="aspect-[1.45] max-w-[5%] max-h-[50%] mt-[-30px] ml-[240px] transform group-hover:rotate-180 transition duration-200"
+              class="aspect-[1.45] max-w-[25%] max-h-[50%] mt-[-32px] ml-[145px] transform group-hover:rotate-180 transition duration-200"
               @mouseover="(e) => hoverPopover(e, open)"
               @mouseleave="closePopover(close)"
             />
@@ -36,7 +36,7 @@
             leave-from-class="transform scale-100 opacity-100"
             leave-to-class="transform scale-95 opacity-0"
           >
-            <MenuItems class="absolute mt-2 w-[162px] ml-[110px]">
+            <MenuItems class="absolute mt-2 w-[162px] ml-[10px]">
               <div class="">
                 <MenuItem v-slot="{ active }">
                   <NuxtLink

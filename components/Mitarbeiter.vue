@@ -1,6 +1,6 @@
 <template>
   <figure
-    class="flex flex-col grow items-center text-2xl leading-9 max-md:mt-4 max-md:max-w-full"
+    class="flex flex-col grow items-center text-2xl max-w-[40%] leading-9 max-md:mt-4 max-md:max-w-full"
     v-for="mitarbeiter in mitarbeiterProp"
   >
     <img

@@ -37,13 +37,11 @@
         clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit.
       </article>
 
-      <section>
-        <div class="mt-24 max-w-full w-[1088px] text-center">
-          <div class="flex gap-4 max-md:flex-col max-md:gap-0">
-            <Mitarbeiter :mitarbeiterProp="mitarbeiter" />
-          </div>
-        </div>
-      </section>
+      <div
+        class="flex flex-row flex-grow flex-wrap mt-24 text-center justify-center text-centerflex basis-full gap-4 max-md:gap-0 w-[1088px]"
+      >
+        <Mitarbeiter :mitarbeiterProp="mitarbeiter" />
+      </div>
     </section>
   </div>
 </template>
@@ -63,6 +61,24 @@ const mitarbeiter = [
     vorname: "Leon",
     nachname: "Knirsch",
     email: "leonknirsch@loremipsum.de",
+    bild: "https://i.ibb.co/LRDfD8h/Screenshot-2024-05-30-at-11-03-09.png",
+  },
+  {
+    vorname: "Paula",
+    nachname: "Alemany",
+    email: "paula@loremipsum.de",
+    bild: "https://i.ibb.co/LRDfD8h/Screenshot-2024-05-30-at-11-03-09.png",
+  },
+  {
+    vorname: "Paula",
+    nachname: "Alemany",
+    email: "paula@loremipsum.de",
+    bild: "https://i.ibb.co/LRDfD8h/Screenshot-2024-05-30-at-11-03-09.png",
+  },
+  {
+    vorname: "Paula",
+    nachname: "Alemany",
+    email: "paula@loremipsum.de",
     bild: "https://i.ibb.co/LRDfD8h/Screenshot-2024-05-30-at-11-03-09.png",
   },
   {
