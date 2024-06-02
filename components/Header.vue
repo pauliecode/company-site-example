@@ -6,12 +6,20 @@
       class="flex self-end text-2xl gap-24 mr-[200px] font-extrabold font-raleway leading-9 text-pink-600 max-md:mr-2.5"
     >
       <NuxtLink class="min-w-[50px]" to="/">
-        <p class="flex-auto font-sans mr-[-105px]">STARTSEITE</p>
+        <!-- Bedingte Anzeige einer Unterstreichung auf den Navigationsbuttons, um anzuzeigen, auf welcher Seite sich der Benutzer gerade befindet.  -->
+        <p
+          :class="{ 'text-underline': useRoute().name === 'index' }"
+          class="flex-auto font-sans mr-[-105px]"
+        >
+          STARTSEITE
+        </p>
       </NuxtLink>
       <div class="flex gap-0 group">
         <Menu as="div" v-slot="{ open, close }" class="">
           <MenuButton class="max-w-[150px] h-[50px] mt-[-38px]">
+            <!-- Bedingte Anzeige einer Unterstreichung auf den Navigationsbuttons, um anzuzeigen, auf welcher Seite sich der Benutzer gerade befindet.  -->
             <NuxtLink
+              :class="{ 'text-underline': useRoute().name === 'about' }"
               class="inline-block font-sans"
               to="/about"
               @mouseover="(e) => hoverPopover(e, open)"
@@ -38,12 +46,18 @@
           >
             <MenuItems class="absolute mt-2 w-[162px] ml-[10px]">
               <div class="">
-                <MenuItem v-slot="{ active }">
+                <!-- Um ein Menü zu erstellen, das sich öffnet, wenn der Benutzer den Mauszeiger über die Button "Über uns" bewegt, habe ich 
+                  eine Bibliothek namens Headless UI verwendet. Unten in diesem Element rufe ich die Funktionen auf, die ich unten erstellt habe. 
+                  Erklärungen dazu finden sich unter im Script. -->
+                <MenuItem>
                   <NuxtLink
                     to="/kontakt"
                     :class="[
                       'bg-[#ECECED] mt-[-15px] font-sans font-extrabold text-[24px] text-[#DB2777]',
                       'group flex w-full items-center rounded-md px-2 py-2',
+                      {
+                        'text-underline': useRoute().name === 'kontakt',
+                      },
                     ]"
                     @mouseover.prevent="popoverHover = true"
                     @mouseleave.prevent="closePopover(close)"
@@ -73,18 +87,24 @@
 </template>
 
 <script setup lang="ts">
+// Headless UI importiert
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 
+// Headless UI hat keine eingebaute Funktion zur Erkennung von Maushovern, was bedeutet, dass Menüs nur durch Klicken geöffnet werden können.
+// Ich habe jedoch einen Code geschrieben, der den Maushover erkennt und ihn im Wesentlichen in einen Klick umwandelt, um Headless UI so zu täuschen, dass es
+// annimmt, der Benutzer habe auf die Button geklickt, und daher das Menü öffnet, wenn der Benutzer über die Button hovert.
+
 interface Props {
-  label: string;
   hasHref?: boolean;
   href?: string;
 }
 const props = defineProps<Props>();
 
+// Dafür habe ich 2 State-Variablen verwendet...
 const popoverHover = ref(false);
 const popoverTimeout = ref();
 
+//...eine Funktion zum Öffnen des Menüs
 const hoverPopover = (e: any, open: boolean): void => {
   popoverHover.value = true;
   if (!open) {
@@ -92,6 +112,7 @@ const hoverPopover = (e: any, open: boolean): void => {
   }
 };
 
+//...und eine Funktion zum Schließen des Menüs
 const closePopover = (close: any): void => {
   popoverHover.value = false;
   if (popoverTimeout.value) clearTimeout(popoverTimeout.value);

@@ -1,6 +1,7 @@
 <template>
+  <!-- Das Array wird hier dann prozessiert mit einem Loop (v-for) um die Daten zu füllen, dynamisch natürlich -->
   <figure
-    class="flex flex-col grow items-center text-2xl max-w-[40%] leading-9 max-md:mt-4 max-md:max-w-full"
+    class="flex flex-col grow items-center text-2xl max-w-[50%] leading-9 max-md:mt-4 max-md:max-w-full"
     v-for="mitarbeiter in mitarbeiterProp"
   >
     <img
@@ -22,6 +23,7 @@
 </template>
 
 <script setup>
+// Der Component bekommt das Prop
 const props = defineProps({
   mitarbeiterProp: {
     type: Array,

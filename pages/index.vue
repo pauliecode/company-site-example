@@ -16,6 +16,7 @@
     <section
       class="!flex flex-col items-center self-center w-full ml-[15px] max-w-[1705px] max-md:max-w-full"
     >
+      <!-- Ich habe ein Reusable Component für den Header erstellt, da er immer das gleiche aussieht. -->
       <Header />
       <h2
         class="self-center mt-[-20px] text-[38px] font-extralight font-raleway text-black"
@@ -28,13 +29,22 @@
       >
         WILLKOMMEN AUF DIESER SEITE.
       </h2>
+
+      <!-- Dies ist ein Bilderschieber, den ich selbst gemacht habe, da ich Probleme mit den Bibliotheken hatte. 
+        Ich benutze useCycleList von Vue, um 3 verschiedene Elemente (Bilder in diesem Fall), die ich in den State speichere, mit prev and next zu wechseln/navigieren.
+      Transition-Effects war ein Work-In-Progess, habe ich es aber nicht geschafft.  -->
       <div class="relative">
-        <img
-          loading="lazy"
-          :src="state"
-          alt="Welcome banner"
-          class="mt-5 w-full max-h-[494px] max-w-[1640px] max-md:mt-10 max-md:max-w-full"
-        />
+        <transition
+          enter-active-class="duration-200 ease-in-out transform translate-x-full"
+          leave-active-class="duration-200 ease-in-out transform -translate-x-full"
+        >
+          <img
+            loading="lazy"
+            :src="state"
+            alt="Welcome banner"
+            class="mt-5 w-full max-h-[494px] max-w-[1640px] max-md:mt-10 max-md:max-w-full"
+          />
+        </transition>
         <button
           class="absolute top-[200px] left-[10px] text-[#7f7f7f]"
           @click="prev()"
@@ -67,6 +77,9 @@
           alt="Gallery image 3"
           class="shrink-0 aspect-square w-[67px] object-cover"
         />
+        <!-- Hier habe ich ein extra kommisches Bild gelassen, um zu zeigen, was ich für die Pagination geschafft hatte. Leider ist es nicht fertig,
+        aber ich wollte mit dem :src="state" arbeiten, um die gezeigte Bilder zu ändern und damit navigirien. Wäre nicht Teil der fertigen Website, 
+        aber ich wollte es hier lassen, damit du sehen kannst was ich machen wollte :) -->
         <img
           loading="lazy"
           :src="state"
@@ -88,50 +101,13 @@
         >
           Unser Team
         </h3>
-        <div class="mt-4 max-w-full w-[1088px] text-center">
-          <div class="flex max-md:flex-col max-md:gap-0">
-            <div class="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-              <figure
-                class="flex flex-col grow items-center text-2xl leading-9 max-md:mt-4 max-md:max-w-full"
-              >
-                <img
-                  loading="lazy"
-                  src="https://i.ibb.co/VJ4WCnr/Screenshot-2024-05-30-at-11-02-04.png"
-                  alt="Monika Petersen"
-                  class="self-stretch w-full mb-5 aspect-[1.69] max-md:max-w-full"
-                />
-                <figcaption>
-                  <strong
-                    class="mt-10 font-extrabold font-sans text-[24px] text-pink-600"
-                    >MONIKA PETERSEN</strong
-                  >
-                  <p class="font-light font-sans text-black">
-                    monikapetersen@loremipsum.de
-                  </p>
-                </figcaption>
-              </figure>
-            </div>
-            <div class="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-              <figure
-                class="flex flex-col grow items-center text-2xl leading-9 max-md:mt-4 max-md:max-w-full"
-              >
-                <img
-                  loading="lazy"
-                  src="https://i.ibb.co/LRDfD8h/Screenshot-2024-05-30-at-11-03-09.png"
-                  alt="Leon Knirsch"
-                  class="self-stretch w-full mb-5 aspect-[1.69] max-md:max-w-full"
-                />
-                <figcaption>
-                  <strong class="mt-9 font-extrabold text-pink-600"
-                    >LEON KNIRSCH</strong
-                  >
-                  <p class="font-light font-sans text-black">
-                    leonknirsch@loremipsum.de
-                  </p>
-                </figcaption>
-              </figure>
-            </div>
-          </div>
+        <div
+          class="flex flex-row flex-grow flex-wrap mt-6 text-center justify-center text-centerflex basis-full gap-4 max-md:gap-0 w-[1088px]"
+        >
+          <!--Für die Mitarbeiter habe ich aun Reusable Component erstellt, damit kann mann sehr einfach neue Mitarbeiter erstellen.
+          Ich gebe mitarbeiter als prop, das ist ein Array von Objekte und ist runter zu finden. Dieses Array könnte die Daten von einem
+          Datenbank sein. Der Component ist dynamisch und wir automatisch aktualisiert wenn er ein Array als Prop bekommt -->
+          <Mitarbeiter :mitarbeiterProp="mitarbeiter" />
         </div>
       </section>
       <NuxtLink
@@ -144,13 +120,30 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import { useCycleList } from "@vueuse/core";
 import Header from "../components/Header.vue";
+import Mitarbeiter from "~/components/Mitarbeiter.vue";
 
+// Hier sind die obengenannte States für den Bilder-Slider
 const { state, next, prev } = useCycleList([
   "https://i.ibb.co/PCmtjs5/Screenshot-2024-05-30-at-10-02-53.png",
   "https://lefrancilien.oec-paris.fr/wp-content/uploads/francilien-115-mission-attestation-header-1328x400.jpg",
   "https://lefrancilien.oec-paris.fr/wp-content/uploads/francilien-114-quickbooks-header-1328x400.jpg",
 ]);
+
+// Hier ist das obengennante Array für die Mitarbeiter
+const mitarbeiter = [
+  {
+    vorname: "Monika",
+    nachname: "Petersen",
+    email: "monikapetersen@loremipsum.de",
+    bild: "https://i.ibb.co/VJ4WCnr/Screenshot-2024-05-30-at-11-02-04.png",
+  },
+  {
+    vorname: "Leon",
+    nachname: "Knirsch",
+    email: "leonknirsch@loremipsum.de",
+    bild: "https://i.ibb.co/LRDfD8h/Screenshot-2024-05-30-at-11-03-09.png",
+  },
+];
 </script>

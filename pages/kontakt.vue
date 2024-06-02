@@ -37,7 +37,10 @@
     >
       Kontaktformular
     </header>
-
+    <!-- Um das Kontaktformular zu erstellen, habe ich zunächst ein normales HTML-Formular verwendet. Ich habe @submit.prevent verwendet, um zu verhindern, dass die Website 
+  beim Absenden aktualisiert wird, und ich habe novalidate hinzugefügt, um die default Validierung des HTML-Formulars zu verhindern. 
+  Auch habe ich v-model verwendet, um eine bidirektionale Verknüpfung mit dem form State-Objekt zu implementieren, das ich unten im Script-Tag deklariert habe.
+-->
     <form @submit.prevent="submitForm" class="flex flex-col mt-10" novalidate>
       <div class="flex gap-4 max-md:flex-wrap">
         <input
@@ -101,6 +104,7 @@
         class="text-[#FF2727] font-sans font-extralight mt-8"
       >
         <p>Fehler: <br /></p>
+        <!-- Verwendung einer For-Schleife durch das Array errorMessages, um die im Array gespeicherten Fehlermeldungen als Strings anzuzeigen.  -->
         <ul>
           <li v-for="error in errorMessages" :key="error">- {{ error }}</li>
         </ul>
@@ -143,6 +147,11 @@ import { ref } from "vue";
 import { $fetch } from "ofetch";
 import Header from "../components/Header.vue";
 
+// Deklarierung des form State-Objekt.
+// access_key ist eindeutig und an eine bestimmte E-Mail-Adresse gebunden, die die Nachrichten aus dem Kontaktformular erhält.
+// Als Plattform habe ich https://web3forms.com/ verwendet. Um dies zu testen, müsste man einen Zugangsschlüssel mit seiner E-Mail-Adresse erstellen.
+// Ich habe auch Bilder als Beweis für die E-Mails auf dem PDF angehängt, die bei meiner E-Mail mit meinem Zugangsschlüssel angekommen sind.
+
 const form = ref({
   access_key: "ed5ead25-4182-42dd-9f13-c4264bf64bde",
   subject: "Nachricht erhalten",
@@ -167,6 +176,8 @@ function validateEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 
+// Bedingungen zur Überprüfung der einzelnen Eingabefelder. Wenn diese Felder leer oder fehlerhaft sind,
+// wird eine String-Meldung über diesen Fehler in das Array errorMessages gepushed.
 const submitForm = async () => {
   errorMessages.value = [];
 
@@ -181,13 +192,14 @@ const submitForm = async () => {
       "Bitte geben Sie eine gültige E-Mail-Adresse ein."
     );
   }
-
+  // Validierung für das Checkbox
   if (consentCheckbox.value?.checked !== true) {
     errorMessages.value.push(
       "Bitte stimmen Sie den Datenschutzbedingungen zu."
     );
   }
 
+  // Checken ob errorMessages leer ist. Wenn das Array nicht leer ist, d.h. dass es irgendwelcher Fehler gab.
   if (errorMessages.value.length > 0) {
     // Fehlermeldungen in einer einzigen String zusammenfassen
     const combinedErrorMessage = errorMessages.value.join("\n"); // Mit Zeilenumbruch verbinden für bessere Lesbarkeit
@@ -195,6 +207,7 @@ const submitForm = async () => {
     return; // Formularübermittlung bei fehlgeschlagener Validierung verhindern
   }
 
+  // Wenn keine Fehler aufgetreten sind, wird der Sendevorgang gestartet.
   result.value = "Bitte warten Sie...";
   try {
     const response = await $fetch("https://api.web3forms.com/submit", {

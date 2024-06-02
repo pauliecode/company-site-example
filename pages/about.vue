@@ -1,13 +1,13 @@
 <template>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet"
   />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
     rel="stylesheet"
@@ -40,6 +40,7 @@
       <div
         class="flex flex-row flex-grow flex-wrap mt-24 text-center justify-center text-centerflex basis-full gap-4 max-md:gap-0 w-[1088px]"
       >
+        <!-- Nochmal Nutzung von dem Mitarbeiter-Component, wie im index.vue erklärt.  -->
         <Mitarbeiter :mitarbeiterProp="mitarbeiter" />
       </div>
     </section>
@@ -50,6 +51,8 @@
 import Mitarbeiter from "~/components/Mitarbeiter.vue";
 import Header from "../components/Header.vue";
 
+// Hier habe ich aber mehr Mitarbeiter hinzugefügt um zu zeigen wie das aussieht.
+// Das habe ich mit flex geschafft.
 const mitarbeiter = [
   {
     vorname: "Monika",
