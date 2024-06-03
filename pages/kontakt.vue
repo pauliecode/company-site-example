@@ -38,9 +38,8 @@
       Kontaktformular
     </header>
     <!-- Um das Kontaktformular zu erstellen, habe ich zunächst ein normales HTML-Formular verwendet. Ich habe @submit.prevent verwendet, um zu verhindern, dass die Website 
-  beim Absenden aktualisiert wird, und ich habe novalidate hinzugefügt, um die default Validierung des HTML-Formulars zu verhindern. 
-  Auch habe ich v-model verwendet, um eine bidirektionale Verknüpfung mit dem form State-Objekt zu implementieren, das ich unten im Script-Tag deklariert habe.
--->
+    beim Absenden aktualisiert wird, und ich habe novalidate hinzugefügt, um die default Validierung des HTML-Formulars zu verhindern. 
+    Auch habe ich v-model verwendet, um eine bidirektionale Verknüpfung mit dem form State-Objekt zu implementieren, das ich unten im Script-Tag deklariert habe. -->
     <form @submit.prevent="submitForm" class="flex flex-col mt-10" novalidate>
       <div class="flex gap-4 max-md:flex-wrap">
         <input
@@ -98,13 +97,13 @@
         >
       </div>
 
-      <!-- Fehlermeldungen werden nur gezeigt, wenn es eigentlich fehlerMeldungen gibt im errorMessages Array. -->
+      <!-- Fehlermeldungen werden nur gezeigt, wenn es welche im errorMessages Array gibt. -->
       <div
         v-if="errorMessages.length > 0"
         class="text-[#FF2727] font-sans font-extralight mt-8"
       >
         <p>Fehler: <br /></p>
-        <!-- Verwendung einer For-Schleife durch das Array errorMessages, um die im Array gespeicherten Fehlermeldungen als Strings anzuzeigen.  -->
+        <!-- Verwendung einer For-Schleife um das Array errorMessages zu loopen, um die im Array gespeicherten Fehlermeldungen als Strings anzuzeigen.  -->
         <ul>
           <li v-for="error in errorMessages" :key="error">- {{ error }}</li>
         </ul>
@@ -177,7 +176,7 @@ function validateEmail(email) {
 }
 
 // Bedingungen zur Überprüfung der einzelnen Eingabefelder. Wenn diese Felder leer oder fehlerhaft sind,
-// wird eine String-Meldung über diesen Fehler in das Array errorMessages gepushed.
+// wird eine String-Meldung über diesen Fehler in das Array errorMessages gepusht.
 const submitForm = async () => {
   errorMessages.value = [];
 
@@ -199,9 +198,9 @@ const submitForm = async () => {
     );
   }
 
-  // Checken ob errorMessages leer ist. Wenn das Array nicht leer ist, d.h. dass es irgendwelcher Fehler gab.
+  // Checken ob errorMessages leer ist. Wenn das Array nicht leer ist, gab es Fehler. -->
   if (errorMessages.value.length > 0) {
-    // Fehlermeldungen in einer einzigen String zusammenfassen
+    // Fehlermeldungen in einem einzigen String zusammenfassen
     const combinedErrorMessage = errorMessages.value.join("\n"); // Mit Zeilenumbruch verbinden für bessere Lesbarkeit
     result.value = combinedErrorMessage;
     return; // Formularübermittlung bei fehlgeschlagener Validierung verhindern

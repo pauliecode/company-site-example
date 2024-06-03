@@ -16,7 +16,7 @@
     <section
       class="!flex flex-col items-center self-center w-full ml-[15px] max-w-[1705px] max-md:max-w-full"
     >
-      <!-- Ich habe ein Reusable Component für den Header erstellt, da er immer das gleiche aussieht. -->
+      <!-- Ich habe ein Reusable Component für den Header erstellt, da er immer gleich aussieht. -->
       <Header />
       <h2
         class="self-center mt-[-20px] text-[38px] font-extralight font-raleway text-black"
@@ -30,9 +30,9 @@
         WILLKOMMEN AUF DIESER SEITE.
       </h2>
 
-      <!-- Dies ist ein Bilderschieber, den ich selbst gemacht habe, da ich Probleme mit den Bibliotheken hatte. 
+      <!-- Dies ist ein Slider für die Bilder, den ich selbst gemacht habe, da ich einige Probleme mit Bibliotheken hatte. 
         Ich benutze useCycleList von Vue, um 3 verschiedene Elemente (Bilder in diesem Fall), die ich in den State speichere, mit prev and next zu wechseln/navigieren.
-      Transition-Effects war ein Work-In-Progess, habe ich es aber nicht geschafft.  -->
+      Transition-Effects war ein Work-In-Progess, habe ich aber nicht geschafft.  -->
       <div class="relative">
         <transition
           enter-active-class="duration-200 ease-in-out transform translate-x-full"
@@ -77,8 +77,8 @@
           alt="Gallery image 3"
           class="shrink-0 aspect-square w-[67px] object-cover"
         />
-        <!-- Hier habe ich ein extra kommisches Bild gelassen, um zu zeigen, was ich für die Pagination geschafft hatte. Leider ist es nicht fertig,
-        aber ich wollte mit dem :src="state" arbeiten, um die gezeigte Bilder zu ändern und damit navigirien. Wäre nicht Teil der fertigen Website, 
+        <!-- Hier habe ich ein "extra" Bild gelassen, um zu zeigen, was ich für die Pagination geschafft hatte. Leider ist es nicht fertig,
+        aber ich wollte mit dem :src="state" arbeiten, um die gezeigten Bilder zu ändern und damit zu navigieren. Ist nicht Teil der fertigen Website, 
         aber ich wollte es hier lassen, damit du sehen kannst was ich machen wollte :) -->
         <img
           loading="lazy"
@@ -90,10 +90,8 @@
       <article
         class="mt-16 text-lg text-center font-light font-sans leading-7 text-black max-w-[812px] max-h-[91px] max-md:mt-10 max-md:max-w-full"
       >
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit.
+        <!-- String dynamisch hinzugefügt -->
+        {{ introductionText }}
       </article>
       <section>
         <h3
@@ -104,9 +102,10 @@
         <div
           class="flex flex-row flex-grow flex-wrap mt-6 text-center justify-center text-centerflex basis-full gap-4 max-md:gap-0 w-[1088px]"
         >
-          <!--Für die Mitarbeiter habe ich aun Reusable Component erstellt, damit kann mann sehr einfach neue Mitarbeiter erstellen.
-          Ich gebe mitarbeiter als prop, das ist ein Array von Objekte und ist runter zu finden. Dieses Array könnte die Daten von einem
-          Datenbank sein. Der Component ist dynamisch und wir automatisch aktualisiert wenn er ein Array als Prop bekommt -->
+          <!--Für die Mitarbeiter habe ich auch ein Reusable Component erstellt. Damit kann man sehr einfach neue Mitarbeiter erstellen.
+          Ich gebe "mitarbeiter" als prop, das ist ein Array von Objekten und ist weiter unten zu finden. Dieses Array könnte die Daten einer
+          Datenbank enthalten. Der Component ist dynamisch und wird automatisch aktualisiert wenn er ein Array als Prop bekommt. Das Array sollte
+          ein Objekt für jeden Mitarbeiter enthalten. Normalerweise würde dies natürlich aus einer Datenbank kommen. -->
           <Mitarbeiter :mitarbeiterProp="mitarbeiter" />
         </div>
       </section>
@@ -123,6 +122,11 @@
 import { useCycleList } from "@vueuse/core";
 import Header from "../components/Header.vue";
 import Mitarbeiter from "~/components/Mitarbeiter.vue";
+
+// Strings wie diese werden derzeit als Variable gespeichert und dynamisch in die Website eingefügt, aber
+// der Inhalt dieser Variable könnte stattdessen aus einer Datenbank stammen.
+const introductionText =
+  "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit.";
 
 // Hier sind die obengenannte States für den Bilder-Slider
 const { state, next, prev } = useCycleList([

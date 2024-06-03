@@ -1,5 +1,5 @@
 <template>
-  <!-- Das Array wird hier dann prozessiert mit einem Loop (v-for) um die Daten zu füllen, dynamisch natürlich -->
+  <!-- Das Array wird hier dann verwendet mit einem Loop (v-for) um die Daten zu füllen, dynamisch natürlich -->
   <figure
     class="flex flex-col grow items-center text-2xl max-w-[50%] leading-9 max-md:mt-4 max-md:max-w-full"
     v-for="mitarbeiter in mitarbeiterProp"
@@ -12,8 +12,13 @@
     />
     <figcaption>
       <strong
-        class="mt-10 font-extrabold font-sans text-[24px] text-pink-600"
-        >{{ mitarbeiter.vorname }}</strong
+        class="mt-10 font-extrabold font-sans text-[24px] text-pink-600 uppercase"
+        >{{ mitarbeiter.vorname }}
+        <a></a>
+      </strong>
+      <strong
+        class="mt-10 font-extrabold font-sans text-[24px] text-pink-600 uppercase"
+        >{{ mitarbeiter.nachname }}</strong
       >
       <p class="font-light font-sans text-black">
         {{ mitarbeiter.email }}

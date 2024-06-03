@@ -46,9 +46,9 @@
           >
             <MenuItems class="absolute mt-2 w-[162px] ml-[10px]">
               <div class="">
-                <!-- Um ein Menü zu erstellen, das sich öffnet, wenn der Benutzer den Mauszeiger über die Button "Über uns" bewegt, habe ich 
-                  eine Bibliothek namens Headless UI verwendet. Unten in diesem Element rufe ich die Funktionen auf, die ich unten erstellt habe. 
-                  Erklärungen dazu finden sich unter im Script. -->
+                <!-- Um ein Menü zu erstellen, das sich öffnet, wenn der Benutzer den Mauszeiger über den Button "Über uns" bewegt, habe ich 
+                  eine Bibliothek namens Headless UI verwendet. Unten in diesem Element rufe ich die Funktionen auf, die ich weiter unten erstellt habe. 
+                  Erklärungen dazu finden sich ebenfalls unten im Script. -->
                 <MenuItem>
                   <NuxtLink
                     to="/kontakt"
@@ -90,9 +90,9 @@
 // Headless UI importiert
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 
-// Headless UI hat keine eingebaute Funktion zur Erkennung von Maushovern, was bedeutet, dass Menüs nur durch Klicken geöffnet werden können.
-// Ich habe jedoch einen Code geschrieben, der den Maushover erkennt und ihn im Wesentlichen in einen Klick umwandelt, um Headless UI so zu täuschen, dass es
-// annimmt, der Benutzer habe auf die Button geklickt, und daher das Menü öffnet, wenn der Benutzer über die Button hovert.
+// Headless UI hat keine eingebaute Funktion zur Erkennung von Hovern, was bedeutet, dass Menüs nur durch Klicken geöffnet werden können.
+// Ich habe jedoch einen Code geschrieben, der das Hovern erkennt und ihn im Wesentlichen in einen Klick umwandelt, um Headless UI so zu täuschen, dass es
+// annimmt, der Benutzer habe auf den Button geklickt, und daher das Menü öffnet, wenn der Benutzer über den Button hovert.
 
 interface Props {
   hasHref?: boolean;
