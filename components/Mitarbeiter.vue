@@ -1,7 +1,7 @@
 <template>
   <!-- Das Array wird hier dann verwendet mit einem Loop (v-for) um die Daten zu füllen, dynamisch natürlich -->
   <figure
-    class="flex flex-col grow items-center text-2xl max-w-[50%] leading-9 max-md:mt-4 max-md:max-w-full"
+    class="flex flex-col grow items-center text-2xl max-w-[50%] leading-9 max-md:mt-4 max-md:max-w-[25%]"
     v-for="mitarbeiter in mitarbeiterProp"
   >
     <img

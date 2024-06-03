@@ -1,15 +1,20 @@
 # Werbewolke Probeaufgabe Paula
 
 Ich habe diese Website mit VueJs, Nuxt und Tailwind erstellt. <br />
-Ich habe sie auf Netlify zur Anzeige bereitgestellt. Anweisungen, wie man das Projekt lokal holt, sinde unten zu finden.
+Ich habe sie auf Netlify zur Anzeige bereitgestellt. Anweisungen, wie man das Projekt lokal holt, sind unten zu finden. <br />
 
-# Nuxt 3 Minimal Starter
+Nuxt 3 Dokumentation (https://nuxt.com/docs/getting-started/introduction).
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Voraussetzungen: 
+
+- NodeJs v18.0.0 oder neuer
+
+# Nach dem Klonen des Repositorys: 
+
 
 ## Setup
 
-Make sure to install the dependencies:
+Installieren der Abhängigkeiten:
 
 ```bash
 # npm
@@ -27,7 +32,7 @@ bun install
 
 ## Development Server
 
-Start the development server on `http://localhost:3000`:
+Development-Server starten auf `http://localhost:3000`:
 
 ```bash
 # npm
@@ -45,7 +50,7 @@ bun run dev
 
 ## Production
 
-Build the application for production:
+Production-Build der Anwendung:
 
 ```bash
 # npm
@@ -61,7 +66,7 @@ yarn build
 bun run build
 ```
 
-Locally preview production build:
+Lokale Vorschau der Production-Build:
 
 ```bash
 # npm
@@ -77,4 +82,4 @@ yarn preview
 bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Die Website ist auch abrufbar unter https://werbewolke-paula.netlify.app/

@@ -152,8 +152,8 @@ import Header from "../components/Header.vue";
 // Ich habe auch Bilder als Beweis für die E-Mails auf dem PDF angehängt, die bei meiner E-Mail mit meinem Zugangsschlüssel angekommen sind.
 
 const form = ref({
-  access_key: "ed5ead25-4182-42dd-9f13-c4264bf64bde",
-  subject: "Nachricht erhalten",
+  access_key: "ed5ead25-4182-42dd-9f13-c4264bf64bde", // Zugangsschlüssel. Bitte ändern, um das Kontaktformular zu testen
+  subject: "Nachricht erhalten", // Betreff der Email, die man bekommen wird
   vorname: "",
   nachname: "",
   email: "",
