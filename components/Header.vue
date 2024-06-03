@@ -53,7 +53,7 @@
                   <NuxtLink
                     to="/kontakt"
                     :class="[
-                      'bg-[#ECECED] mt-[-15px] font-sans font-extrabold text-[24px] text-[#DB2777]',
+                      'bg-[#ECECED] mt-[-15px] outline-none font-sans font-extrabold text-[24px] text-[#DB2777]',
                       'group flex w-full items-center rounded-md px-2 py-2',
                       {
                         'text-underline': useRoute().name === 'kontakt',

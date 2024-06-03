@@ -33,7 +33,7 @@
 
   <section class="flex flex-col items-center justify-center">
     <p
-      class="font-raleway font-extralight text-center text-[38px] max-w-[763px] max-h-[90px]"
+      class="font-raleway font-extralight text-center mt-[130px] text-[38px] max-w-[763px] max-h-[90px]"
     >
       Vielen Dank für Ihre Nachricht. <br />
       Wir melden uns in kürze bei Ihnen zurück!

@@ -31,7 +31,7 @@
       </h2>
 
       <!-- Dies ist ein Slider für die Bilder, den ich selbst gemacht habe, da ich einige Probleme mit Bibliotheken hatte. 
-        Ich benutze useCycleList von Vue, um 3 verschiedene Elemente (Bilder in diesem Fall), die ich in den State speichere, mit prev and next zu wechseln/navigieren.
+      Ich benutze useCycleList von Vue, um 3 verschiedene Elemente (Bilder in diesem Fall), die ich in den State speichere, mit prev and next zu wechseln/navigieren.
       Transition-Effects war ein Work-In-Progess, habe ich aber nicht geschafft.  -->
       <div class="relative">
         <transition

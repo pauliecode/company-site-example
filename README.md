@@ -3,7 +3,8 @@
 Ich habe diese Website mit VueJs, Nuxt und Tailwind erstellt. <br />
 Ich habe sie auf Netlify zur Anzeige bereitgestellt. Anweisungen, wie man das Projekt lokal holt, sind unten zu finden. <br />
 
-Nuxt 3 Dokumentation (https://nuxt.com/docs/getting-started/introduction).
+Nuxt 3 Dokumentation (https://nuxt.com/docs/getting-started/introduction). <br />
+Website auf Netlify https://werbewolke-paula.netlify.app/
 
 Voraussetzungen: 
 
@@ -81,5 +82,3 @@ yarn preview
 # bun
 bun run preview
 ```
-
-Die Website ist auch abrufbar unter https://werbewolke-paula.netlify.app/
