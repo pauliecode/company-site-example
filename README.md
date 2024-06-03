@@ -1,7 +1,8 @@
 # Werbewolke Probeaufgabe Paula
 
 Ich habe diese Website mit VueJs, Nuxt und Tailwind erstellt. <br />
-Ich habe sie auf Netlify zur Anzeige bereitgestellt. Anweisungen, wie man das Projekt lokal holt, sinde unten zu finden.
+Ich habe sie auf Netlify zur Anzeige bereitgestellt. https://werbewolke-paula.netlify.app/ <br />
+Anweisungen, wie man das Projekt lokal holt, sinde unten zu finden.
 
 # Nuxt 3 Minimal Starter
 
