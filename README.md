@@ -1,10 +1,10 @@
-# Werbewolke Probeaufgabe Paula
+# Frontend Dev Exhibit
 
 Ich habe diese Website mit VueJs, Nuxt und Tailwind erstellt. <br />
 Ich habe sie auf Netlify zur Anzeige bereitgestellt. Anweisungen, wie man das Projekt lokal holt, sind unten zu finden. <br />
 
 Nuxt 3 Dokumentation (https://nuxt.com/docs/getting-started/introduction). <br />
-Website auf Netlify https://werbewolke-paula.netlify.app/
+Website auf Netlify https://frontend-exhibit.netlify.app/
 
 Voraussetzungen: 
 
