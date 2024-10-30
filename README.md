@@ -1,5 +1,6 @@
-# Showcase of an imaginary company's website
+# Showcase of a "made-up" company's website
 
+Project to showcase what a typical website for a company could/would look like. <br />
 Made with VueJs, Nuxt and Tailwind. <br />
 Project is also deployed on Netlify (Link below). Instructions on how to get the project locally are below: <br />
 
