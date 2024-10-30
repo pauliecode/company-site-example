@@ -1,21 +1,22 @@
-# Frontend Dev Exhibit
+# Showcase of an imaginary company's website
 
-Ich habe diese Website mit VueJs, Nuxt und Tailwind erstellt. <br />
-Ich habe sie auf Netlify zur Anzeige bereitgestellt. Anweisungen, wie man das Projekt lokal holt, sind unten zu finden. <br />
+Made with VueJs, Nuxt and Tailwind. <br />
+Project is also deployed on Netlify (Link below). Instructions on how to get the project locally are below: <br />
 
-Nuxt 3 Dokumentation (https://nuxt.com/docs/getting-started/introduction). <br />
-Website auf Netlify https://frontend-exhibit.netlify.app/
+Nuxt 3 Documentation (https://nuxt.com/docs/getting-started/introduction). <br />
+Live link: https://frontend-exhibit.netlify.app/
 
-Voraussetzungen: 
+Requirements: 
 
-- NodeJs v18.0.0 oder neuer
+- NodeJs v18.0.0 or newer
 
-# Nach dem Klonen des Repositorys: 
+# Clone the repository: 
 
+git clone https://github.com/pauliecode/frontend-dev-exhibit.git
 
 ## Setup
 
-Installieren der Abhängigkeiten:
+Install the dependencies:
 
 ```bash
 # npm
@@ -33,7 +34,7 @@ bun install
 
 ## Development Server
 
-Development-Server starten auf `http://localhost:3000`:
+`http://localhost:3000`:
 
 ```bash
 # npm
@@ -51,7 +52,7 @@ bun run dev
 
 ## Production
 
-Production-Build der Anwendung:
+Create a production build::
 
 ```bash
 # npm
@@ -67,7 +68,7 @@ yarn build
 bun run build
 ```
 
-Lokale Vorschau der Production-Build:
+Preview your Production build:
 
 ```bash
 # npm
