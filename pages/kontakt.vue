@@ -152,7 +152,7 @@ import Header from "../components/Header.vue";
 
 const form = ref({
   access_key: "ed5ead25-4182-42dd-9f13-c4264bf64bde", // Zugangsschlüssel. Bitte ändern, um das Kontaktformular zu testen
-  subject: "Nachricht erhalten", // Betreff der Email, die man bekommen wird
+  subject: "Nachricht erhalten", // Betreff der E-Mail, die man bekommen wird
   vorname: "",
   nachname: "",
   email: "",
@@ -162,12 +162,12 @@ const form = ref({
 // State für das Checkbox
 const consentCheckbox = ref(null);
 
-// States für die verschiede Phasen des Submit-Verfahrens
+// States für die verschiedenen Phasen des Submit-Verfahrens
 const result = ref("");
 const status = ref("");
 const errorMessages = ref([]);
 
-// Funktion um das Format der Email-Adresse zu überprüfen
+// Funktion um das Format der E-Mail-Adresse zu überprüfen
 function validateEmail(email) {
   const re =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -200,7 +200,7 @@ const submitForm = async () => {
   // Checken ob errorMessages leer ist. Wenn das Array nicht leer ist, gab es Fehler. -->
   if (errorMessages.value.length > 0) {
     // Fehlermeldungen in einem einzigen String zusammenfassen
-     // Mit Zeilenumbruch verbinden für bessere Lesbarkeit
+     // mit Zeilenumbruch verbinden für bessere Lesbarkeit
     result.value = errorMessages.value.join("\n");
     return; // Formularübermittlung bei fehlgeschlagener Validierung verhindern
   }
@@ -219,11 +219,11 @@ const submitForm = async () => {
     if (response.status === 200) {
       status.value = "success";
     } else {
-      console.log(response); // Log für die Debugging, kann gelöscht werden
+      console.log(response); // Log für Debugging, kann gelöscht werden
       status.value = "error";
     }
   } catch (error) {
-    console.log(error); // Log für die Debugging, kann gelöscht werden
+    console.log(error); // Log für Debugging, kann gelöscht werden
     status.value = "error";
     result.value = "Etwas ist schiefgelaufen!";
   } finally {

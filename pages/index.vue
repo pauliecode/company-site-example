@@ -16,7 +16,6 @@
     <section
       class="!flex flex-col items-center self-center w-full ml-[15px] max-w-[1705px] max-md:max-w-full"
     >
-      <!-- Ich habe ein Reusable Component für den Header erstellt, da er immer gleich aussieht. -->
       <Header />
       <h2
         class="self-center mt-[-20px] text-[38px] font-extralight font-raleway text-black"
@@ -30,9 +29,7 @@
         WILLKOMMEN AUF DIESER SEITE.
       </h2>
 
-      <!-- Dies ist ein Slider für die Bilder, den ich selbst gemacht habe, da ich einige Probleme mit Bibliotheken hatte. 
-      Ich benutze useCycleList von Vue, um 3 verschiedene Elemente (Bilder in diesem Fall), die ich in den State speichere, mit prev and next zu wechseln/navigieren.
-      Transition-Effects war ein Work-In-Progess, habe ich aber nicht geschafft.  -->
+      <!-- Dies ist ein Slider für die Bilder, den ich selbst gemacht habe, da ich einige Probleme mit Bibliotheken hatte.  -->
       <div class="relative">
         <transition
           enter-active-class="duration-200 ease-in-out transform translate-x-full"
@@ -74,15 +71,6 @@
         <img
           loading="lazy"
           src="https://lefrancilien.oec-paris.fr/wp-content/uploads/francilien-114-quickbooks-header-1328x400.jpg"
-          alt="Gallery image 3"
-          class="shrink-0 aspect-square w-[67px] object-cover"
-        />
-        <!-- Hier habe ich ein "extra" Bild gelassen, um zu zeigen, was ich für die Pagination geschafft hatte. Leider ist es nicht fertig,
-        aber ich wollte mit dem :src="state" arbeiten, um die gezeigten Bilder zu ändern und damit zu navigieren. Ist nicht Teil der fertigen Website, 
-        aber ich wollte es hier lassen, damit du sehen kannst was ich machen wollte :) -->
-        <img
-          loading="lazy"
-          :src="state"
           alt="Gallery image 3"
           class="shrink-0 aspect-square w-[67px] object-cover"
         />
@@ -135,7 +123,7 @@ const { state, next, prev } = useCycleList([
   "https://lefrancilien.oec-paris.fr/wp-content/uploads/francilien-114-quickbooks-header-1328x400.jpg",
 ]);
 
-// Hier ist das obengennante Array für die Mitarbeiter
+// Hier ist das obengenannte Array für die Mitarbeiter
 const mitarbeiter = [
   {
     vorname: "Monika",
