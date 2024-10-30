@@ -12,33 +12,32 @@
     href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
     rel="stylesheet"
   />
-  <div class="flex flex-col px-20pt-7 pb-20 mt-[100px] bg-white max-md:px-5">
+  <div class="flex flex-col items-center justify-center px-20 pt-7 pb-20 mt-[100px] bg-white max-md:px-5 w-full">
     <section
-      class="flex flex-col items-center self-center w-full max-w-[1705px] max-md:max-w-full"
+        class="flex flex-col items-center w-full max-w-[1705px] max-md:max-w-full"
     >
       <Header />
-      <h2
-        class="self-center mt-[-20px] text-[38px] font-extralight font-raleway text-black"
-      >
+      <h2 class="mt-[-20px] text-[38px] font-extralight font-raleway text-black text-center">
         Kontakt
       </h2>
 
       <h2
-        class="text-[54px] mt-[1px] font-extrabold font-raleway text-pink-600 leading-[81px] max-md:max-w-full max-md:text-4xl"
+          class="text-[54px] mt-[1px] font-extrabold font-raleway text-pink-600 leading-[81px] max-md:max-w-full max-md:text-4xl text-center"
       >
         WIR SIND FÜR SIE DA.
       </h2>
     </section>
   </div>
 
-  <section class="flex flex-col ml-[400px]">
+
+  <section class="flex flex-col items-center justify-center w-full max-md:px-5">
     <header
-      class="w-full text-4xl mb-[-30px] font-extralight text-black leading-[57px] max-md:max-w-full"
+        class="w-full text-4xl mb-[-30px] font-extralight text-black leading-[57px] max-md:max-w-full text-center"
     >
       Kontaktformular
     </header>
-    <!-- Um das Kontaktformular zu erstellen, habe ich zunächst ein normales HTML-Formular verwendet. Ich habe @submit.prevent verwendet, um zu verhindern, dass die Website 
-    beim Absenden aktualisiert wird, und ich habe novalidate hinzugefügt, um die default Validierung des HTML-Formulars zu verhindern. 
+    <!-- Um das Kontaktformular zu erstellen, habe ich zunächst ein normales HTML-Formular verwendet. Ich habe @submit.prevent verwendet, um zu verhindern, dass die Website
+    beim Absenden aktualisiert wird, und ich habe novalidate hinzugefügt, um die default Validierung des HTML-Formulars zu verhindern.
     Auch habe ich v-model verwendet, um eine bidirektionale Verknüpfung mit dem form State-Objekt zu implementieren, das ich unten im Script-Tag deklariert habe. -->
     <form @submit.prevent="submitForm" class="flex flex-col mt-10" novalidate>
       <div class="flex gap-4 max-md:flex-wrap">
@@ -142,8 +141,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { $fetch } from "ofetch";
+import {ref} from "vue";
+import {$fetch} from "ofetch";
 import Header from "../components/Header.vue";
 
 // Deklarierung des form State-Objekt.
@@ -171,7 +170,7 @@ const errorMessages = ref([]);
 // Funktion um das Format der Email-Adresse zu überprüfen
 function validateEmail(email) {
   const re =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 }
 
@@ -201,8 +200,8 @@ const submitForm = async () => {
   // Checken ob errorMessages leer ist. Wenn das Array nicht leer ist, gab es Fehler. -->
   if (errorMessages.value.length > 0) {
     // Fehlermeldungen in einem einzigen String zusammenfassen
-    const combinedErrorMessage = errorMessages.value.join("\n"); // Mit Zeilenumbruch verbinden für bessere Lesbarkeit
-    result.value = combinedErrorMessage;
+     // Mit Zeilenumbruch verbinden für bessere Lesbarkeit
+    result.value = errorMessages.value.join("\n");
     return; // Formularübermittlung bei fehlgeschlagener Validierung verhindern
   }
 
